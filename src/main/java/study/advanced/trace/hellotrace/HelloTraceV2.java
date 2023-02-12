@@ -23,6 +23,20 @@ public class HelloTraceV2 {
 		return new TraceStatus(traceId, startTimeMs, message);
 	};
 	
+	//v2에서 추가
+	public TraceStatus beginSync( TraceId beforeTraceId, String message) {
+	
+		TraceId nextId= beforeTraceId.createNextId();
+		
+		Long startTimeMs = System.currentTimeMillis();
+		log.info("[{}] {} {} ", nextId.getId(), addSpace(START_PREFIX, nextId.getLevel()), message);
+		//로그출력
+		return new TraceStatus(nextId, startTimeMs, message);
+	};
+	
+	
+	
+	
 	public void end(TraceStatus status) {
 		complete(status, null);
 	}
