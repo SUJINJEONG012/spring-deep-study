@@ -31,10 +31,13 @@ public class FieldServiceTest {
 		threadB.setName("thread-B"); // 쓰레드 이름설정
 		
 		threadA.start(); // 쓰레드 A시작
-		sleep(2000); //2초동안 쉼, 동시성 문제 발생X
+		//sleep(2000); //2초동안 쉼, 동시성 문제 발생X
+		sleep(100); //동시성 문제발생
 		
 		threadB.start(); //쓰레드 B시작
-		sleep(2000);
+		sleep(2000); //메인 쓰레드 종료대기
+		log.info("main exit");
+		
 		
 	}
 
