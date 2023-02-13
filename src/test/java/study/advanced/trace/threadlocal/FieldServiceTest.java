@@ -14,19 +14,38 @@ public class FieldServiceTest {
 	void field() {
 		log.info("main start");
 		
+		//쓰레드1 
 		Runnable userA = () -> {
 			fieldService.logic("userA");
 		};
 		
+		//쓰레드2
 		Runnable userB = () -> {
 			fieldService.logic("userB");
 		};
 		
+		
 		Thread threadA = new Thread(userA);
-		threadA.setName("thread-A");
+		threadA.setName("thread-A"); // 쓰레드 이름설정 
 		Thread threadB = new Thread(userB);
-		threadB.setName("thread-B");	
+		threadB.setName("thread-B"); // 쓰레드 이름설정
+		
+		threadA.start(); // 쓰레드 A시작
+		sleep(2000); //2초동안 쉼, 동시성 문제 발생X
+		
+		threadB.start(); //쓰레드 B시작
+		sleep(2000);
 		
 	}
+
+	private void sleep(int millis) {
+		try {
+			Thread.sleep(millis);
+		}catch(InterruptedException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	
 	
 }
