@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ThreadLocalService {
 	
-	private ThreadLocal<String> nameStore = new ThreadLocal(); //<T> 타입지정, 난 String
+	private ThreadLocal<String> nameStore = new ThreadLocal<>(); //<T> 타입지정, 난 String
 	
 	public String logic(String name) {
 		log.info("저장 name={} -> nameStore={}", name, nameStore.get()); //조회할때 get()
